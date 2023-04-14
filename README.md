@@ -11,3 +11,8 @@ Pour encourager la participation des utilisateurs, l'application dispose d'un sy
 En plus de la carte interactive des incidents, l'application offre également une liste de tous les incidents signalés, classés par ordre de priorité. Les utilisateurs peuvent consulter des informations supplémentaires sur chaque incident, telles que sa nature, sa gravité et la date à laquelle il a été signalé. 
 
 En somme, cette application web HSE est un outil précieux pour aider à améliorer la sécurité et la propreté de la ville de Marseille, en incitant les citoyens à signaler et à résoudre différents types d'incidents.
+
+Répartition des tâches:
+Aris : Carte, accueil, récompenses
+Mina : signaler, ramasser
+Anass : connexion, inscription
