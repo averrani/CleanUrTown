@@ -14,5 +14,5 @@ En somme, cette application web HSE est un outil précieux pour aider à amélio
 
 Répartition des tâches:
 Aris : Carte, accueil, récompenses
-Mina : signaler, ramasser
+Mina : signaler, ramasser,liste des incidents
 Anass : connexion, inscription
