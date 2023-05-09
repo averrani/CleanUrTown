@@ -1,3 +1,10 @@
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=client.html";
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
 
@@ -15,8 +22,12 @@ form.addEventListener('submit', (event) => {
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onload = function() {
     if (xhr.status === 200) {
+      
       const response = JSON.parse(xhr.responseText);
       console.log(response);
+      setCookie('login', email, 1);
+      location.replace("client.html");
+      //console.log(response);
     } else {
       console.error(xhr.statusText);
     }
