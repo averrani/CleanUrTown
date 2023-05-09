@@ -1,6 +1,6 @@
 var express = require("express");
 const business = require("../business/business");
-
+var cors = require('cors')
 var app = express();
 
 // Importation de bodyParser pour gérer les requêtes POST
@@ -24,6 +24,13 @@ const apiPres = {
             next();
         });
 
+        app.use(cors())
+
+        app.get('/api/login', function (req, res) {
+        res.json({msg: 'This is CORS-enabled for all origins!'})
+        })
+
+
         // Définition de la route POST pour ajouter un nouveau client avec les données envoyées dans le body
         app.post("/api/customers", function(req, res) {
             const total = business.getCustomers();
@@ -46,6 +53,17 @@ const apiPres = {
             // et renvoi de la réponse à la requête HTTP
             res.json(business.ajouter(newCustomer));
         });
+        app.post('/api/login', (req, res) => {
+            const email = req.body.email;
+            const password = req.body.password;
+            const result = business.checkLogin(email, password);
+            if (result) {
+              res.status(200).json({ message: 'Login successful' });
+            } else {
+              res.status(401).json({ message: 'Login failed' });
+            }
+          });
+          
 
         // Démarrage du serveur sur le port spécifié en paramètre
         app.listen(port, function(){

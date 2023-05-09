@@ -44,6 +44,20 @@ let dataLayer = {
 
         return added;
     },
+    // Vérifie si l'email et le mot de passe existent dans le fichier JSON
+    checkLogin: function(email, password) {
+        const data = fs.readFileSync(filename);
+        const customers = JSON.parse(data);
+        
+        for (let customer of customers) {
+            if (customer.email === email && customer.password === password) {
+                return true;
+            }
+        }
+        
+    return false;
+    },       
+
 
 
 }

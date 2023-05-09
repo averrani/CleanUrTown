@@ -40,6 +40,11 @@ const business = {
         return data.ajouter(customer);;
     },
 
+    // Vérifie si l'email et le mot de passe existent dans le fichier JSON
+    checkLogin : function(email, password){
+        return data.checkLogin(email, password);
+    },
+
 
 
 }
