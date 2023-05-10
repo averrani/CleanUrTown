@@ -39,6 +39,15 @@ const apiServ = {
             res.status(200).json(incidents);
         })
 
+        app.get('/api/incidents',(req,res)=>{
+            res.jsendFile(__dirname+'/incidents/list.html');
+        });
+
+        app.get('/api/incidents',(req,res)=>{
+            res.jsendFile(__dirname+'/incidents/map.html');
+        });
+
+
         //ajoute un user
         app.post('/api/incidents', (req, res) => {
             let message = business_incidents.addIncident(req.body);
