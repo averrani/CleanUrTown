@@ -60,7 +60,6 @@ body {
     text-decoration: underline; /* soulignement au survol du lien */
   }
   
-
   .error {
     background-color: #ffdddd;
     color: #f44336;
@@ -68,5 +67,3 @@ body {
     margin-top: 10px;
     border-radius: 5px;
   }
-  
-  
