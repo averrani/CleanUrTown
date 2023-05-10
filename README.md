@@ -19,3 +19,17 @@ Aris : Carte, accueil, récompenses
 Mina : signaler, ramasser,liste des incidents
 
 Anass : connexion, inscription
+
+COMMENT EXECUTER L'API : 
+
+1) ouvrir avec la console les sous-dossiers client et server
+
+2) Pour chacun d'entre eux, lancer `npm i dependencies`
+
+3) Pour chacun d'entre eux, lancer `npm run dev`
+
+4) Ouvir le navigateur et taper "http://localhost:3000/list.html"
+
+En cas de problèmes de port déjà utilisé :
+
+kill -9 $(lsof -t -i:3001)
