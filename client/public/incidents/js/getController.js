@@ -77,10 +77,11 @@ function tab() {
                 tr.appendChild(td);
 
                 td = document.createElement("td");
-                td.innerText = data.incidents[i].date;
+                td.innerText = data.incidents[i].priorite;
                 tr.appendChild(td);
 
-                td.innerText = data.incidents[i].priorite;
+                td = document.createElement("td");
+                td.innerText = data.incidents[i].date;
                 tr.appendChild(td);
                 tbody.appendChild(tr);
             }
