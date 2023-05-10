@@ -1,0 +1,134 @@
+
+.button1{
+
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:#DDA0DD;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+
+}
+
+.button2{
+
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #DDA0DD;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+
+}
+
+.button3{
+
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:#DDA0DD;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+
+}
+
+.button4{
+
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:#DDA0DD;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+
+}
+
+.button5{
+
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #DDA0DD;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+
+}
+
+
+/* Définir une classe pour le conteneur des boutons */
+.button-container {
+    text-align: center;
+}
+
+/* Définir une classe pour le conteneur de la zone de texte */
+.textarea-container {
+    text-align: center;
+  }
+
+
+
+
+  /* Ajouter une bordure autour du tableau */
+table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    width: 100%;
+  }
+  
+  
+  /* Ajouter un style aux cellules de l'en-tête de tableau */
+  th {
+    background-color: #af7ab0;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Ajouter un style de survol de la souris pour les cellules de l'en-tête de tableau */
+  th:hover {
+    background-color: #dfacec;
+  }
+  
+  /* Ajouter un style alterné de ligne pour les cellules de données */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Ajouter un style de survol de la souris pour les cellules de données */
+  tr:hover {
+    background-color: #e5e5e5;
+  }
+  
+  /* Ajouter une bordure à toutes les cellules de tableau */
+  td {
+    border: 1px solid rgb(241, 223, 223);
+    padding: 8px;
+    text-align: center;
+  }
+  
