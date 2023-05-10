@@ -15,8 +15,9 @@ function handleSubmit() {
     let  incidents= {
         numero: numMax + 1,
         type: document.getElementById("type").value,
-        longitude: longitude,
-        latitude: latitude,
+        longitude: document.getElementById("longitude").value,
+        latitude: document.getElementById("latitude").value,
+        situation: document.getElementById("situation").value,
         priorite: document.getElementById("priorite").value,
         date: new Date()
         
@@ -31,5 +32,4 @@ function handleSubmit() {
             alert(response.message);
         }
     });
-
 }
