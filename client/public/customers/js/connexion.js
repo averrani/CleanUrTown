@@ -29,6 +29,10 @@ form.addEventListener('submit', (event) => {
       location.replace("client.html");
       //console.log(response);
     } else {
+      const errorContainer = document.createElement('div');
+      errorContainer.classList.add('error');
+      errorContainer.textContent = 'Utilisateur inconnu';
+      form.appendChild(errorContainer);
       console.error(xhr.statusText);
     }
   };
