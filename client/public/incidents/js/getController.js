@@ -48,7 +48,10 @@ function tab() {
             th.innerText = "Date";
             tr.appendChild(th);
 
-           
+            th = document.createElement("th");
+            th.innerText = "Image";
+            tr.appendChild(th);
+
             thead.appendChild(tr);
             table.appendChild(thead);
 
@@ -86,12 +89,13 @@ function tab() {
                 tr.appendChild(td);
 
                 td = document.createElement("td");
-                let img = document.createElement("img");
-                img.src = "uploads/" + data.incidents[i].image; // Chemin de l'image
-                img.style.width = "100px"; // Définissez la largeur souhaitée de l'image
-                td.appendChild(img);
+                for (let j = 0; j < data.incidents[i].images.length; j++) {
+                  let img = document.createElement("img");
+                  img.src = "uploads/" + data.incidents[i].images[j]; // Chemin de l'image
+                  img.style.width = "100px"; // Définissez la largeur souhaitée de l'image
+                  td.appendChild(img);
+              }
                 tr.appendChild(td);
-
                 tbody.appendChild(tr);
             }
             table.appendChild(tbody);

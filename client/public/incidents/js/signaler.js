@@ -67,8 +67,7 @@ function handleSubmit() {
         situation: document.getElementById("situation").value,
         priorite: document.getElementById("priorite").value,
         date: new Date(),
-        image: document.getElementById("imageInput").value
-        
+      
         
     };
 
