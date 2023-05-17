@@ -48,6 +48,7 @@ function tab() {
             th.innerText = "Date";
             tr.appendChild(th);
 
+           
             thead.appendChild(tr);
             table.appendChild(thead);
 
@@ -83,6 +84,14 @@ function tab() {
                 td = document.createElement("td");
                 td.innerText = data.incidents[i].date;
                 tr.appendChild(td);
+
+                td = document.createElement("td");
+                let img = document.createElement("img");
+                img.src = "uploads/" + data.incidents[i].image; // Chemin de l'image
+                img.style.width = "100px"; // Définissez la largeur souhaitée de l'image
+                td.appendChild(img);
+                tr.appendChild(td);
+
                 tbody.appendChild(tr);
             }
             table.appendChild(tbody);
