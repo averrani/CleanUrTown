@@ -73,8 +73,8 @@ const apiServ = {
         })
 
         app.delete('/api/incidents', (req, res) => {
-            const clientid = req.query.id;
-            let message = business_incidents.removeIncident(clientid);
+            const num = req.query.numero;
+            let message = business_incidents.removeIncident(num);
             res.status(200).send(message);
         })
         

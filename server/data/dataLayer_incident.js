@@ -80,10 +80,10 @@ let data = {
         //parse to object
         let newincidents = JSON.parse(rawdata);
         //findIndex permet de retrouver un user en fonction du param removeuser
-        const id = newincidents.findIndex(user => user.id === parseInt(removeuser));
-        if (id != -1) {
+        const numero = newincidents.findIndex(user => user.numero=== parseInt(removeuser));
+        if (numero != -1) {
             //puis de le retirer s'il existe 
-            newincidents.splice(id, 1);
+            newincidents.splice(numero, 1);
             //et de reecrire le fichier
             fs.writeFileSync(incident_file, JSON.stringify(newincidents, null, 2));
             return 1;
