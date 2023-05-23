@@ -1,7 +1,7 @@
   /* Style pour le corps de la page */
   body {
     font-family: "Trebuchet MS", Arial, sans-serif;
-    background: linear-gradient(to bottom, rgba(23, 131, 21, 1) 0%, rgba(236, 9, 9, 0) 100%), url('./bg.jpg');
+    background: linear-gradient(to bottom, rgb(60, 90, 60) 0%, rgba(76, 109, 83, 0) 100%), url('./bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -47,7 +47,7 @@
     font-size: 2rem;
     margin: 0;
     padding: 30px;
-    background-color: #178315a3;
+    background-color: #587458a3;
     border-bottom: 2px solid;
     background-image: linear-gradient(to right, transparent, #20d471, transparent);
     background-position: center bottom;
@@ -80,7 +80,7 @@
     font-size: 1.5rem;
     margin: 0;
     padding: 30px;
-    background-color: #178315a3;
+    background-color: #426342a3;
     border-bottom: 2px solid;
     background-image: linear-gradient(to right, transparent, #20d471, transparent);
     background-position: center bottom;
