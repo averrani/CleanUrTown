@@ -18,8 +18,8 @@ function handleSubmit() {
     let incidents= {
         numero: newnum,
         type: document.getElementById("type").value,
-        longitude: document.getElementById("longitude").value,
-        latitude: document.getElementById("latitude").value,
+        longitude: document.getElementById("latitude").value,
+        latitude: document.getElementById("longitude").value,
         situation: document.getElementById("situation").value,
         priorite: document.getElementById("priorite").value,
         date: new Date()

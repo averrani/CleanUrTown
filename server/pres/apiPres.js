@@ -4,6 +4,7 @@ const business_customers = require('../business/business_customers');
 const app = express();
 const fs = require('fs');
 const { Buffer } = require('buffer');
+const path = require('path');
 
 
 var cors = require('cors');
@@ -47,9 +48,8 @@ const apiServ = {
         app.use(express.static('public'));
         app.use(cors()); 
 
-        app.get('/api/image', (req,res) => {
-            const imagePath = req.query.imageName; // Récupère le nom de l'image depuis les paramètres de requête
-            console.log(imagePath);
+        app.get('/api/image/:imageName', (req, res) => {
+            const imagePath = path.resolve('', 'img', req.params.imageName);
             // Vérification de l'existence de l'image
             if (fs.existsSync(imagePath)) {
               // Lecture du contenu de l'image

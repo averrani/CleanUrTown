@@ -16,6 +16,6 @@ function getCookie(cname) {
   }
   return "";
 }
-let ber = "Email : " + getCookie('login');
+let ber = "Vous êtes connecté avec l'email : " + getCookie('login');
 document.getElementById("email").innerHTML = ber;
 });

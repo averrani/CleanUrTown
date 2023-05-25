@@ -103,28 +103,32 @@ function tab() {
                 const imageContainer = document.createElement('div');
                 const imageContainerId = 'image-container-' + i; // Identifiant unique
                 imageContainer.id = imageContainerId;
+                imageContainer.setAttribute('class', 'image-container');
                 imageContainer.appendChild(popupLink);
 
-                // Création de l'élément bouton de fermeture
-                const closeButton = document.createElement('span');
-                const closeButtonId = 'close-button-' + i; // Identifiant unique
-                closeButton.id = closeButtonId;
-                closeButton.innerHTML = '&times;';
-
-                // Création de l'élément conteneur du popup
-                const popupContainer = document.createElement('div');
-                const popupContainerId = 'popup-container-' + i; // Identifiant unique
-                popupContainer.id = popupContainerId;
-                popupContainer.appendChild(closeButton);
-
                 td.appendChild(imageContainer);
-                td.appendChild(popupContainer);
                
                 tr.appendChild(td);
                 tbody.appendChild(tr);
             }
             table.appendChild(tbody);
+
+            // Création de l'élément bouton de fermeture
+            const closeButton = document.createElement('span');
+            const closeButtonId = 'close-button'; // Identifiant unique
+            closeButton.id = closeButtonId;
+            closeButton.setAttribute('class', 'close-button');
+            closeButton.innerHTML = '&times;';
+
+            // Création de l'élément conteneur du popup
+            const popupContainer = document.createElement('div');
+            const popupContainerId = 'popup-container'; // Identifiant unique
+            popupContainer.id = popupContainerId;
+            popupContainer.setAttribute('class', 'popup-container');
+            popupContainer.appendChild(closeButton);
+
             container.appendChild(table);  
+            container.appendChild(popupContainer);
         });
 
            
@@ -225,17 +229,61 @@ function createPagin(){
   
 }
 
-function getImage(i){
-  
-  $.get('/api/image', { imageName: encodeURI(i) }, function(response) {
-    // Création de l'élément d'image
-    const image = $('<img>');
-    image.attr('src', 'data:image/jpeg;base64,' + response);
-    image.attr('alt', 'Image du backend');
-  
-    // Ajouter l'image au conteneur d'image
-    popupContainer.appendChild(image);
+function getImage(i, popupContainer){
+  $.ajax({
+    url: 'http://localhost:3001/api/image/' + i,
+    method: 'GET',
+    success: function(data) {
+      // La requête a réussi, 'data' contient l'image
+      // Création de l'élément d'image
+      const image = $('<img>');
+      image.attr('src', 'data:image/jpeg;base64,' + data);
+      image.attr('alt', 'Image du backend');
+      image.attr('id', 'popup');
+    
+      // Ajouter l'image au conteneur d'image
+      $(popupContainer).append(image);
+    }
   });
+}
+
+function handlePopup() {
+
+  // Sélectionnez l'élément racine avec l'ID "container"
+  const containerElement = document.getElementById('container');
+
+  // Ajoutez un gestionnaire d'événements au conteneur
+  containerElement.addEventListener('click', function(event) {
+    // Vérifiez si l'élément cliqué est un div à l'intérieur d'un td
+    if (event.target.tagName === 'IMG' && event.target.parentElement.tagName === 'A') {
+      // Récupérez l'ID du div
+      const divId = event.target.parentElement.parentElement.id;
+
+          // Récupérer l'élément de conteneur d'image
+        const popupContainer = document.getElementById('popup-container');
+        const popupImage = document.getElementById('popup');
+        const closeButton = document.getElementById('close-button');
+        const imageContainer = document.getElementById(divId);
+
+        const linkElement = imageContainer.querySelector('a');
+        const imageElement = linkElement.querySelector('img');
+        const altText = imageElement.alt;
+
+        imageContainer.addEventListener('click', function (event) {
+          getImage(altText, popupContainer);
+          event.preventDefault(); // Empêche le comportement par défaut du lien 
+          // Affiche le popup
+          popupContainer.style.display = 'block';
+        });
+
+        closeButton.addEventListener('click', function() {  
+          // Ferme le popup
+          popupContainer.style.display = 'none';
+          // Supprime l'image du popup
+          popupContainer.removeChild(popupImage);
+        });
+    }
+  });  
 }
 
 //on attend que le DOM soit chargé pour executer les fonctions
@@ -248,39 +296,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("nbelt").addEventListener("change", changeSelectValue);
   //on crée la pagination initiale
   createPagin();
-
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-  // Récupération des éléments nécessaires
-  
-
-setTimeout(function() {
-  // Récupérer l'élément de conteneur d'image
-  const popupContainer = document.getElementById('popup-container');
-  const closeButton = document.getElementById('close-button');
-  const imageContainer = document.getElementById('image-container-0');
-  const linkElement = imageContainer.querySelector('a');
-  const imageElement = linkElement.querySelector('img');
-  const altText = imageElement.alt;
-  console.log(altText);
-
-  imageContainer.addEventListener('click', function (event) {
-    getImage(altText);
-    event.preventDefault(); // Empêche le comportement par défaut du lien 
-    alert('Vous avez cliqué sur le lien !');
-    // Affiche le popup
-    popupContainer.style.display = 'block';
-  });
-
-  // // Ajout d'un gestionnaire d'événement sur le clic du bouton de fermeture
-  // closeButton.addEventListener('click', function () {
-  //   // Ferme le popup
-  //   popupContainer.style.display = 'none';
-  // });
-
-}, 200); // pause de 100 ms avant la tentative de connexion
+  handlePopup();
 
 });

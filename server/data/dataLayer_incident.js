@@ -76,7 +76,7 @@ let data = {
 
     handleIncident : function(incident, image){
         let obj = JSON.parse(incident.incidents);
-        obj.image = "../../server/img/" + image.filename;
+        obj.image = image.filename;
         this.addIncident(obj);
         console.log(incident);
     }
