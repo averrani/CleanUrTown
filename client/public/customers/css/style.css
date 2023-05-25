@@ -1,7 +1,7 @@
   /* Style pour le corps de la page */
   body {
     font-family: "Trebuchet MS", Arial, sans-serif;
-    background: linear-gradient(to bottom, rgb(60, 90, 60) 0%, rgba(76, 109, 83, 0) 100%), url('./bg.jpg');
+    background: linear-gradient(to bottom, rgb(60, 90, 60) 0%, rgba(76, 109, 83, 0) 100%), url('../img/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }

@@ -3,8 +3,6 @@ var url = new URL("http://localhost:3001/api/incidents");
 function tab() {
 
 
-    setTimeout(function(){
-
         $.get(url,(data) => {
 
         //on vide le div container puis on cree le tableau
@@ -89,16 +87,46 @@ function tab() {
                 tr.appendChild(td);
 
                 td = document.createElement("td");
+
+                // Création de l'élément image miniature
+                const thumbnailImage = document.createElement('img');
+                thumbnailImage.src = 'chemin_vers_image_miniature.jpg';
+                thumbnailImage.alt = data.incidents[i].image;
+
+                // Création de l'élément lien de la popup
+                const popupLink = document.createElement('a');
+                // popupLink.href = '#'; // Lien de la popup à définir
+                popupLink.classList.add('popup-link');
+                popupLink.appendChild(thumbnailImage);
+
+                // Création de l'élément conteneur d'image
+                const imageContainer = document.createElement('div');
+                const imageContainerId = 'image-container-' + i; // Identifiant unique
+                imageContainer.id = imageContainerId;
+                imageContainer.appendChild(popupLink);
+
+                // Création de l'élément bouton de fermeture
+                const closeButton = document.createElement('span');
+                const closeButtonId = 'close-button-' + i; // Identifiant unique
+                closeButton.id = closeButtonId;
+                closeButton.innerHTML = '&times;';
+
+                // Création de l'élément conteneur du popup
+                const popupContainer = document.createElement('div');
+                const popupContainerId = 'popup-container-' + i; // Identifiant unique
+                popupContainer.id = popupContainerId;
+                popupContainer.appendChild(closeButton);
+
+                td.appendChild(imageContainer);
+                td.appendChild(popupContainer);
                
                 tr.appendChild(td);
                 tbody.appendChild(tr);
             }
             table.appendChild(tbody);
             container.appendChild(table);  
-            
         });
 
-    },1000);
            
 }
 
@@ -197,14 +225,62 @@ function createPagin(){
   
 }
 
+function getImage(i){
+  
+  $.get('/api/image', { imageName: encodeURI(i) }, function(response) {
+    // Création de l'élément d'image
+    const image = $('<img>');
+    image.attr('src', 'data:image/jpeg;base64,' + response);
+    image.attr('alt', 'Image du backend');
+  
+    // Ajouter l'image au conteneur d'image
+    popupContainer.appendChild(image);
+  });
+}
+
 //on attend que le DOM soit chargé pour executer les fonctions
-document.addEventListener("DOMContentLoaded", function() {
-    //code
+document.addEventListener("DOMContentLoaded", function () {
+  //code
   console.log("Le document est chargé");
   //on crée le tableau initial
   tab();
   //si on change le nombre d'éléments à afficher, on appelle changeSelectValue
   document.getElementById("nbelt").addEventListener("change", changeSelectValue);
   //on crée la pagination initiale
-  createPagin();  
+  createPagin();
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  // Récupération des éléments nécessaires
+  
+
+setTimeout(function() {
+  // Récupérer l'élément de conteneur d'image
+  const popupContainer = document.getElementById('popup-container');
+  const closeButton = document.getElementById('close-button');
+  const imageContainer = document.getElementById('image-container-0');
+  const linkElement = imageContainer.querySelector('a');
+  const imageElement = linkElement.querySelector('img');
+  const altText = imageElement.alt;
+  console.log(altText);
+
+  imageContainer.addEventListener('click', function (event) {
+    getImage(altText);
+    event.preventDefault(); // Empêche le comportement par défaut du lien 
+    alert('Vous avez cliqué sur le lien !');
+    // Affiche le popup
+    popupContainer.style.display = 'block';
+  });
+
+  // // Ajout d'un gestionnaire d'événement sur le clic du bouton de fermeture
+  // closeButton.addEventListener('click', function () {
+  //   // Ferme le popup
+  //   popupContainer.style.display = 'none';
+  // });
+
+}, 200); // pause de 100 ms avant la tentative de connexion
+
 });

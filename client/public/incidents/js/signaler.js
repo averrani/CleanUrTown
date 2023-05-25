@@ -22,10 +22,10 @@ function handleSubmit() {
         latitude: document.getElementById("latitude").value,
         situation: document.getElementById("situation").value,
         priorite: document.getElementById("priorite").value,
-        date: new Date(),
-      
-        
+        date: new Date()
     };
+    // let tmp = document.getElementById("image").files[0];
+    // console.log(tmp);
 
      // on crée un objet FormData pour envoyer les données avec le fichier
      let formData = new FormData();

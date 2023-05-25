@@ -7,24 +7,24 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script type="text/javascript" src="./js/getController.js"></script>
-        <link rel="stylesheet" type="text/css" href="liste.css">
+        <link rel="stylesheet" type="text/css" href="css/liste.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courier+New">
     </head>
 
-    <body>
+    <body style="background: bisque;">
+      <a href="../customers/client.html">
+        <img style="position: absolute; top:25px; left: 0; width: 20%; height: 10%;"
+          src="../customers/img/logo.png"
+          alt="logo">
+      </a>
       <br>
         <main>
           <h1> Liste des Incidents </h1>
         </main>
       <br><br>
-      <div class="button-container">
-        <button class="button1" onclick="window.location.href='Signaler.html';" role="button">Signaler</button>
-        <!--<button class="button1" style="background-color: rgb(209,146,189);" onclick="window.location.href='Ramasser.html';" role="button">Modifier un dechets</button>-->
-        <button class="button1" style="background-color: rgb(146, 201, 209);" onclick="window.location.href='Ramasser.html';" role="button">Retirer un incident</button>
-      </div>
       <br><br>
       <div class="d-flex justify-content-around mt-20">
-          <label> Nb dechets
+          <label> Nb incidents
             <select id="nbelt">
               <option value="5">5</option>
               <option value="10" selected="selected">10</option>
@@ -59,7 +59,4 @@
     <div id="container"></div>
     
     </body>
-     <script>
-         
-     </script>
 </html>

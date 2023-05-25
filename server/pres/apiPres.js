@@ -2,11 +2,34 @@ const express = require('express');
 const business_incidents = require('../business/business_incident');
 const business_customers = require('../business/business_customers');
 const app = express();
+const fs = require('fs');
+const { Buffer } = require('buffer');
+
 
 var cors = require('cors');
 
 const multer  = require('multer');
-const upload = multer({dest: "img/" });
+
+
+const MIME_TYPE = {
+    'image/jpg': 'jpg',
+    'image/jpeg': 'jpg',
+    'image/png': 'png'
+}
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'img/')
+    },
+    filename: (req, file, cb) => {
+        const name = file.originalname.split(" ").join("_");
+        const extension = MIME_TYPE[file.mimetype];
+
+        cb(null, name + "_" + Date.now() + '.' + extension);
+    }
+})
+
+const upload = multer({storage: storage });
 
 // Importation de bodyParser pour gérer les requêtes POST
 var bodyParser = require('body-parser');
@@ -23,6 +46,26 @@ const apiServ = {
         app.use(express.json()); 
         app.use(express.static('public'));
         app.use(cors()); 
+
+        app.get('/api/image', (req,res) => {
+            const imagePath = req.query.imageName; // Récupère le nom de l'image depuis les paramètres de requête
+            console.log(imagePath);
+            // Vérification de l'existence de l'image
+            if (fs.existsSync(imagePath)) {
+              // Lecture du contenu de l'image
+              fs.readFile(imagePath, (err, data) => {
+                if (err) {
+                  console.error(err);
+                  res.status(500).send('Erreur lors de la récupération de l\'image');
+                } else {
+                  const imageBase64 = Buffer.from(data).toString('base64');
+                  res.send(imageBase64);
+                }
+              });
+            } else {
+              res.status(404).send('Image non trouvée');
+            }
+          });
         
         app.get('/api/incidents/all', (req,res) => {   
             
@@ -45,8 +88,7 @@ const apiServ = {
 
 
         app.post('/api/incidents/form', upload.single("image"), (req,res) => {
-            console.log(req.body.date);
-            // business_incidents.handleIncident(req.body, req.file);
+            business_incidents.handleIncident(req.body, req.file);
             res.json({ success: true, message: "Formulaire soumis avec succès !" });
         });
 

@@ -53,6 +53,10 @@ const business = {
     
     handleIncident : function(form, file){
         data.handleIncident(form, file);
+    },
+
+    getImage : function(imagePath){
+        data.getImage(imagePath);
     }
 
 };
