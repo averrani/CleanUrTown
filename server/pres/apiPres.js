@@ -2,19 +2,11 @@ const express = require('express');
 const business_incidents = require('../business/business_incident');
 const business_customers = require('../business/business_customers');
 const app = express();
-const path =require('path');
+
 var cors = require('cors');
+
 const multer  = require('multer');
-const storage= multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null,'./public/uploads');
-    },
-    filename:(req,file,cb)=>{
-        console.log(file)
-        cb(null,Date.now()+ path.extname(file.originalname));
-    }
-});
-const upload = multer({storage:storage});
+const upload = multer({dest: "img/" });
 
 // Importation de bodyParser pour gérer les requêtes POST
 var bodyParser = require('body-parser');
@@ -51,14 +43,19 @@ const apiServ = {
             res.status(200).json(incidents);
         })
 
-       //image
-        app.get("/api/incidents/uploads",(req,res)=>{
-            res.render("upload");
-        });
+    //    //image
+    //     app.get("/api/incidents/uploads",(req,res)=>{
+    //         res.render("upload");
+    //     });
             
+    //     app.post("/api/incidents/uploads",upload.single('image'),(req,res)=>{
+    //         res.send("upload sucess");
+    //     });
 
-        app.post("/api/incidents/uploads",upload.single('image'),(req,res)=>{
-            res.send("upload sucess");
+        app.post('/api/incidents/form', upload.single("image"), (req,res) => {
+            console.log(req.body.date);
+            // business_incidents.handleIncident(req.body, req.file);
+            res.json({ success: true, message: "Formulaire soumis avec succès !" });
         });
 
         //ajoute un user

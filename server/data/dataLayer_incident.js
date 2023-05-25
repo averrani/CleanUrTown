@@ -89,6 +89,12 @@ let data = {
             return 1;
         } else 
           return 0;        
+    },   
+
+    handleIncident : function(incident, image){
+        incident.imagePath = "../img/" + image.filename;
+        this.addIncident(incident);
+        console.log(incident);
     }
 };  
 

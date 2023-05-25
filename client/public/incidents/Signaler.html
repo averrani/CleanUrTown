@@ -7,6 +7,8 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://codepb.github.io/jquery-template/jquery.loadTemplate-0.4.3.js" type="text/javascript" charset="utf-8"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script type="text/javascript" src="./js/signaler.js"></script>
     <link rel="stylesheet" href="liste.css">
    
@@ -15,17 +17,17 @@
 
 <body>
      <br><br>
-    <div style="text-align:center"> <h1>Signaler un dechet</h1></div>
+    <div style="text-align:center"> <h1>Signaler un incident</h1></div>
 
     <div class="d-flex justify-content-center">
-            <form method="post" action="http://localhost:3001/api/incidents" style="width:30rem; position:relative; top:2rem;">
+            <form style="width:30rem; position:relative; top:2rem;">
             
                     <div class="row">
                         <div class="col">
                             <label for="company">Type:</label>
                             <select class="form-control" id="type">
-                                <option>Incident Naturelle</option>
-                                <option>Dechets encombrant</option>
+                                <option>Incident Naturel</option>
+                                <option>Déchet encombrant</option>
                                 <option>Accident</option>
                             </select>
                         </div>
@@ -33,52 +35,50 @@
                     <div class="row">
                         <div class="col">
                             <label for="priorite">Priorite de l'incident:</label>
-                            <input type="name" class="form-control" id="priorite" placeholder="ex:Haute">
+                            <select class="form-control" id="priorite">
+                                <option>Basse</option>
+                                <option>Moyenne</option>
+                                <option>Haute</option>
+                            </select>
                         </div>
             
                         <div class="col">
                             <label for="situation">Situation</label>
-                            <input type="name" class="form-control" id="situation" placeholder="ex:Trottoir bloque">
+                            <input type="name" class="form-control" id="situation" placeholder="Trottoir bloqué">
                         </div>
             
                     </div>
                     
+                    <div class="row">
+                        <div class="col">
                         <div class="form-group">
-                            <label for="longitude">Longitude:</label>
+                            <label for="longitude">Vote longitude:</label>
                             <input type="text" class="form-control" id="longitude" readonly>
                         </div>
-            
+                        </div>
+                        
+                        <div class="col">
                         <div class="form-group">
-                            <label for="latitude">Latitude:</label>
+                            <label for="latitude">Votre latitude:</label>
                             <input type="text" class="form-control" id="latitude" readonly>
                         </div>
-                            <input type="hidden" id="latitude" name="latitude">
-                            <input type="hidden" id="longitude" name="longitude">
-                        
-                            <button type="button" onclick="getLocation()">Récupérer la position</button>
-
-                    <div class="form-group">
-                        <label for="date">Date:</label>
-                        <input type="date" class="form-control" id="date" placeholder="Date de création">
+                        </div>
                     </div>
 
-                    <form method="POST"  action="/upload" enctype="multipart/form-data">
-                        <input type="file" name="image">
-                        <input type="submit" value="Envoyer">
-                    </form>
-                      
-                    
-                    <br><br><br>
+                    <br>
+                    <label for="image">Image :</label>
+                    <input type="file" id="image" name="image"><br><br>
                     
                     <div class="row">
                         <div class="col-sm-12">
-                            <button type="button" style="background-color: #86C5DB;" class="btn btn-secondary" onclick="window.location.href = '/incidents/list.html';">Liste des dechets</button>
-                            <button style="background-color: rgb(219, 184, 222); position: absolute; right:0;" onclick="handleSubmit()" class="btn btn-primary">Valider</button>
+                            <button type="button" style="background-color: #86C5DB;" class="btn btn-secondary" onclick="window.location.href = '/incidents/list.html';">Retour à la liste</button>
+                            <button style="background-color: rgb(219, 184, 222); position: absolute; right:0;" type="submit" class="btn btn-primary">Valider</button>
                         </div>
                     </div>
 
                         
             </form>
+
     </div>
             
     

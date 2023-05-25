@@ -47,6 +47,10 @@ const business = {
         let nb = data.removeIncident(user);
         if(nb) return { success: true, message: "Utilisateur supprimé avec succès." };
         else return { success: false, message: "ID d'utilisateur non trouvé." };
+    },
+
+    handleIncident : function(form, file){
+        data.handleIncident(form, file);
     }
 
 };

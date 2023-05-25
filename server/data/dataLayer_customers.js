@@ -57,10 +57,7 @@ let dataLayer = {
         }
         
     return false;
-    },       
-
-
-
+    }
 }
 
 module.exports = dataLayer;
