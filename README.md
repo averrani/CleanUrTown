@@ -28,7 +28,7 @@ COMMENT EXECUTER L'API :
 
 3) Pour chacun d'entre eux, lancer `npm run dev`
 
-4) Ouvir le navigateur et taper "http://localhost:3000/list.html"
+4) Ouvir le navigateur et taper "http://localhost:3000/customers/"
 
 En cas de problèmes de port déjà utilisé :
 
