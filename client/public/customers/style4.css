@@ -1,0 +1,66 @@
+/* style4.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  h1#email {
+    color: #007bff;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  p {
+    color: #777;
+    font-size: 16px;
+  }
+  
+  ul {
+    list-style-type: disc;
+    color: #555;
+    margin-left: 20px;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  .button1 {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .button1:hover {
+    background-color: #0056b3;
+  }
+  
+  .button-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .logo {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 20%;
+    height: 10%;
+  }
+  
+  .container {
+    margin: 20px;
+  }
+  
