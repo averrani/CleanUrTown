@@ -5,11 +5,13 @@ const defaultPage = 1;
 const maxNumber = 50;
 
 const business = {
+
     getAllIncidents : function(){
         return data.getIncidents();
     }, 
 
     getIncidents : function(number, page){
+
         //initialise les pages si non fait
         if(page == undefined ){ // == ou === ?????
             page = defaultPage;
@@ -43,12 +45,12 @@ const business = {
         else return { success: false, message: "Erreur lors de la modification du client." };
     },
 
-    removeIncident : function(user){
-        let nb = data.removeIncident(user);
-        if(nb) return { success: true, message: "Utilisateur supprimé avec succès." };
-        else return { success: false, message: "ID d'utilisateur non trouvé." };
+    removeIncident: function (incidentId) {
+        let message = data.removeIncident(incidentId);
+        return message;
     },
 
+    
     handleIncident : function(form, file){
         data.handleIncident(form, file);
     }

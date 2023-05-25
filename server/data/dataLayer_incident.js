@@ -1,5 +1,6 @@
-const incident_file = "./data/incidents.json";
 const fs = require('fs');
+const incident_file = "./data/incidents.json";
+
 
 let data = {
     //renvoie tous les incidents du fichier users.json
@@ -52,44 +53,26 @@ let data = {
 
     },
 
-    updateIncident : function(user){
-        // Charge le contenu du fichier JSON
-        const data = fs.readFileSync(incident_file);
-        const incidents = JSON.parse(data);
-
-        // Trouve l'objet à mettre à jour
-        const objectid = incidents.findIndex(obj => obj.id === user.id);
-
-        // Si l'objet existe, met à jour ses propriétés avec les données fournies
-        if (objectid !== -1) {
-            const updatedObject = { ...incidents[objectid], ...user };
-            incidents[objectid] = updatedObject;
-            // Écrit le nouveau contenu du fichier JSON
-            const updatedData = JSON.stringify(incidents, null, 2);
-            fs.writeFileSync(incident_file, updatedData);
-            return 1;
-        } else {
-            return 0;
-        }
-    },
-
+    
     //retire l'incident en fonction de son id
-    removeIncident : function(removeuser){
+    removeIncident: function (removeuser) {
         //get data from json file
         const rawdata = fs.readFileSync(incident_file);
         //parse to object
         let newincidents = JSON.parse(rawdata);
-        //findIndex permet de retrouver un user en fonction du param removeuser
-        const numero = newincidents.findIndex(user => user.numero=== parseInt(removeuser));
-        if (numero != -1) {
-            //puis de le retirer s'il existe 
-            newincidents.splice(numero, 1);
-            //et de reecrire le fichier
+        //findIndex permet de retrouver un incident en fonction du paramètre removeuser
+        const index = newincidents.findIndex(incident => incident.numero === parseInt(removeuser));
+        if (index !== -1) {
+            //puis de le retirer s'il existe
+            newincidents.splice(index, 1);
+            //et de réécrire le fichier
             fs.writeFileSync(incident_file, JSON.stringify(newincidents, null, 2));
-            return 1;
-        } else 
-          return 0;        
-    },   
+            return { success: true, message: "Incident supprimé avec succès." };
+        } else {
+            return { success: false, message: "Incident non trouvé." };
+        }
+    },
+      
 
     handleIncident : function(incident, image){
         incident.imagePath = "../img/" + image.filename;

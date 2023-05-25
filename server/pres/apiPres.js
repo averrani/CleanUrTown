@@ -43,14 +43,6 @@ const apiServ = {
             res.status(200).json(incidents);
         })
 
-    //    //image
-    //     app.get("/api/incidents/uploads",(req,res)=>{
-    //         res.render("upload");
-    //     });
-            
-    //     app.post("/api/incidents/uploads",upload.single('image'),(req,res)=>{
-    //         res.send("upload sucess");
-    //     });
 
         app.post('/api/incidents/form', upload.single("image"), (req,res) => {
             console.log(req.body.date);
@@ -64,17 +56,14 @@ const apiServ = {
             res.status(200).send(message);
         })
         
-        app.put('/api/incidents', (req, res) => {
-            let message = business_incidents.updateIncident(req.body);
-            res.status(200).send(message);
-        })
-
+       
         app.delete('/api/incidents', (req, res) => {
-            const num = req.query.numero;
-            let message = business_incidents.removeIncident(num);
-            res.status(200).send(message);
-        })
+            const incidentId = req.query.numero;
+            let message = business_incidents.removeIncident(incidentId);
+            res.status(200).json(message);
+        });
         
+            
         /* ----------------------------------------------------------- */
         /* ----------------------------------------------------------- */
         // Définition du middleware pour gérer les customers
